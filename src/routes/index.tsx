@@ -1,24 +1,59 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Nav } from "../components/portfolio/Nav";
+import { Hero } from "../components/portfolio/Hero";
+import { About } from "../components/portfolio/About";
+import { Skills } from "../components/portfolio/Skills";
+import { Experience } from "../components/portfolio/Experience";
+import { Projects } from "../components/portfolio/Projects";
+import { Achievements } from "../components/portfolio/Achievements";
+import { Education } from "../components/portfolio/Education";
+import { Gallery } from "../components/portfolio/Gallery";
+import { Contact } from "../components/portfolio/Contact";
+import { Footer } from "../components/portfolio/Footer";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Abdelrahman Bakr Ghazy — AI & ML Engineer" },
+      {
+        name: "description",
+        content:
+          "Portfolio of Abdelrahman Bakr Ghazy — AI Engineer, Machine Learning Engineer, Data Scientist, and Software Engineer. Building AI systems, LLM-powered applications, and data-driven products.",
+      },
+      { property: "og:title", content: "Abdelrahman Bakr Ghazy — AI & ML Engineer" },
+      {
+        property: "og:description",
+        content:
+          "Portfolio of Abdelrahman Bakr Ghazy — AI Engineer, ML Engineer, Data Scientist, and Software Engineer.",
+      },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
+    <main className="relative min-h-screen bg-[#050505] text-foreground">
+      {/* Ambient background */}
+      <div
+        aria-hidden
+        className="pointer-events-none fixed inset-0 -z-10"
+        style={{
+          background:
+            "radial-gradient(ellipse 80% 60% at 20% 0%, rgba(220,20,60,0.12), transparent 60%), radial-gradient(ellipse 60% 50% at 90% 30%, rgba(220,20,60,0.08), transparent 70%), #050505",
+        }}
       />
-    </div>
+      <Nav />
+      <Hero />
+      <About />
+      <Skills />
+      <Experience />
+      <Projects />
+      <Achievements />
+      <Education />
+      <Gallery />
+      <Contact />
+      <Footer />
+    </main>
   );
 }
