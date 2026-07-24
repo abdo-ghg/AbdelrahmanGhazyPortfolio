@@ -11,20 +11,46 @@ import { Gallery } from "../components/portfolio/Gallery";
 import { Contact } from "../components/portfolio/Contact";
 import { Footer } from "../components/portfolio/Footer";
 
+const SITE_TITLE = "Abdelrahman Bakr Ghazy — AI & ML Engineer";
+const SITE_DESCRIPTION =
+  "Portfolio of Abdelrahman Bakr Ghazy — AI Engineer, Machine Learning Engineer, Data Scientist, and Software Engineer. Building AI systems, LLM-powered applications, and data-driven products.";
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Abdelrahman Bakr Ghazy — AI & ML Engineer" },
+      { title: SITE_TITLE },
+      { name: "description", content: SITE_DESCRIPTION },
       {
-        name: "description",
+        name: "keywords",
         content:
-          "Portfolio of Abdelrahman Bakr Ghazy — AI Engineer, Machine Learning Engineer, Data Scientist, and Software Engineer. Building AI systems, LLM-powered applications, and data-driven products.",
+          "AI Engineer, Machine Learning Engineer, Data Scientist, Software Engineer, LLM, Deep Learning, Portfolio, Abdelrahman Bakr Ghazy",
       },
-      { property: "og:title", content: "Abdelrahman Bakr Ghazy — AI & ML Engineer" },
+      { property: "og:title", content: SITE_TITLE },
+      { property: "og:description", content: SITE_DESCRIPTION },
+      { property: "og:url", content: "/" },
+      { property: "og:site_name", content: "Abdelrahman Bakr Ghazy" },
+      { name: "twitter:title", content: SITE_TITLE },
+      { name: "twitter:description", content: SITE_DESCRIPTION },
+    ],
+    links: [{ rel: "canonical", href: "/" }],
+    scripts: [
       {
-        property: "og:description",
-        content:
-          "Portfolio of Abdelrahman Bakr Ghazy — AI Engineer, ML Engineer, Data Scientist, and Software Engineer.",
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Person",
+          name: "Abdelrahman Bakr Ghazy",
+          jobTitle: "AI & Machine Learning Engineer",
+          description: SITE_DESCRIPTION,
+          knowsAbout: [
+            "Artificial Intelligence",
+            "Machine Learning",
+            "Deep Learning",
+            "Large Language Models",
+            "Data Science",
+            "Software Engineering",
+          ],
+        }),
       },
     ],
   }),
