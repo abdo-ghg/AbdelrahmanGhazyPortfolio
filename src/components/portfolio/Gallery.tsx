@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { X, ImageIcon } from "lucide-react";
 import { Section } from "./Section";
-import { GALLERY } from "./data";
+import { useContent } from "./useContent";
 
 export function Gallery() {
+  const { gallery } = useContent();
   const [open, setOpen] = useState<number | null>(null);
 
   useEffect(() => {
@@ -23,12 +24,12 @@ export function Gallery() {
       subtitle="Competitions, hackathons, IEEE, NASA Space Apps, UN Habitat, and conferences."
     >
       <div className="grid auto-rows-[180px] grid-cols-2 gap-4 sm:auto-rows-[220px] sm:grid-cols-3 lg:grid-cols-4">
-        {GALLERY.map((label, idx) => {
+        {gallery.map((item, idx) => {
           const span =
             idx % 7 === 0 ? "row-span-2" : idx % 5 === 3 ? "col-span-2" : "";
           return (
             <motion.button
-              key={label + idx}
+              key={item.label + idx}
               onClick={() => setOpen(idx)}
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -38,6 +39,14 @@ export function Gallery() {
               className={`group relative overflow-hidden rounded-2xl glass text-left ${span}`}
               data-placeholder="PHOTO_PLACEHOLDER"
             >
+              {item.image ? (
+                <img
+                  src={item.image}
+                  alt={item.label}
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              ) : null}
               <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-white/5" />
               <div
                 className="absolute inset-0 opacity-30"
@@ -48,10 +57,12 @@ export function Gallery() {
               />
               <div className="absolute inset-0 flex items-end justify-between p-4">
                 <div>
-                  <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
-                    PHOTO_PLACEHOLDER
-                  </div>
-                  <div className="mt-1 text-sm font-medium">{label}</div>
+                  {!item.image && (
+                    <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
+                      PHOTO_PLACEHOLDER
+                    </div>
+                  )}
+                  <div className="mt-1 text-sm font-medium">{item.label}</div>
                 </div>
                 <ImageIcon className="h-4 w-4 text-muted-foreground opacity-60 transition-transform group-hover:scale-110" />
               </div>
@@ -79,14 +90,25 @@ export function Gallery() {
               className="relative aspect-video w-full max-w-4xl overflow-hidden rounded-3xl glass-strong"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-primary/25 via-background to-background" />
+              {gallery[open]?.image ? (
+                <img
+                  src={gallery[open].image}
+                  alt={gallery[open].label}
+                  className="absolute inset-0 h-full w-full object-contain"
+                />
+              ) : null}
               <div className="absolute inset-0 grid place-items-center">
                 <div className="text-center">
-                  <ImageIcon className="mx-auto h-10 w-10 text-white/60" />
-                  <div className="mt-3 font-mono text-xs uppercase tracking-[0.25em] text-muted-foreground">
-                    PHOTO_PLACEHOLDER
-                  </div>
+                  {!gallery[open]?.image && (
+                    <>
+                      <ImageIcon className="mx-auto h-10 w-10 text-white/60" />
+                      <div className="mt-3 font-mono text-xs uppercase tracking-[0.25em] text-muted-foreground">
+                        PHOTO_PLACEHOLDER
+                      </div>
+                    </>
+                  )}
                   <div className="mt-2 text-lg font-medium">
-                    {GALLERY[open]}
+                    {gallery[open]?.label}
                   </div>
                 </div>
               </div>
