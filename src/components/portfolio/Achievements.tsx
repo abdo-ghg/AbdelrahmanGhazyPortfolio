@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "motion/react";
 import { Trophy } from "lucide-react";
 import { Section } from "./Section";
-import { ACHIEVEMENTS } from "./data";
+import { useContent } from "./useContent";
 
 function Counter({ value }: { value: string }) {
   const ref = useRef<HTMLSpanElement>(null);
@@ -37,6 +37,7 @@ function Counter({ value }: { value: string }) {
 }
 
 export function Achievements() {
+  const { achievements } = useContent();
   return (
     <Section
       id="achievements"
@@ -44,9 +45,9 @@ export function Achievements() {
       title="Numbers that back the work."
     >
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-        {ACHIEVEMENTS.map((a, idx) => (
+        {achievements.map((a, idx) => (
           <motion.div
-            key={a.label}
+            key={a.label + idx}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}

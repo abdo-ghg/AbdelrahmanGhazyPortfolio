@@ -1,10 +1,11 @@
 import { motion } from "motion/react";
 import { GraduationCap, Award, ExternalLink } from "lucide-react";
 import { Section } from "./Section";
-import { CERTIFICATIONS } from "./data";
-import { Placeholder } from "./Placeholder";
+import { useContent } from "./useContent";
+import { Media } from "./Media";
 
 export function Education() {
+  const { certifications } = useContent();
   return (
     <Section id="education" eyebrow="Education & Certifications" title="Learning, formally and constantly.">
       <div className="grid gap-6 lg:grid-cols-[1fr_1.5fr]">
@@ -40,9 +41,9 @@ export function Education() {
         </motion.div>
 
         <div className="grid gap-5 sm:grid-cols-2">
-          {CERTIFICATIONS.map((c, idx) => (
+          {certifications.map((c, idx) => (
             <motion.div
-              key={c.title}
+              key={c.title + idx}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
@@ -51,7 +52,7 @@ export function Education() {
               className="group flex flex-col overflow-hidden rounded-3xl glass"
             >
               <div className="p-3">
-                <Placeholder label="CERTIFICATE_IMAGE" aspect="aspect-[16/10]" />
+                <Media src={c.image} alt={c.title} label="CERTIFICATE_IMAGE" aspect="aspect-[16/10]" />
               </div>
               <div className="flex flex-1 flex-col p-5 pt-2">
                 <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-primary">
@@ -61,7 +62,9 @@ export function Education() {
                 <h4 className="mt-2 text-base font-semibold">{c.title}</h4>
                 <p className="mt-1 text-sm text-muted-foreground">{c.issuer}</p>
                 <a
-                  href="#"
+                  href={c.link || "#"}
+                  target={c.link ? "_blank" : undefined}
+                  rel={c.link ? "noreferrer" : undefined}
                   className="mt-4 inline-flex items-center gap-1.5 self-start rounded-full border border-white/10 px-3 py-1.5 text-xs text-muted-foreground transition-colors hover:border-primary/40 hover:text-primary"
                 >
                   <ExternalLink className="h-3 w-3" />
