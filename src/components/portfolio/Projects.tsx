@@ -1,10 +1,11 @@
 import { motion } from "motion/react";
 import { ArrowUpRight, Github, ExternalLink } from "lucide-react";
 import { Section } from "./Section";
-import { PROJECTS } from "./data";
-import { Placeholder } from "./Placeholder";
+import { useContent } from "./useContent";
+import { Media } from "./Media";
 
 export function Projects() {
+  const { projects } = useContent();
   return (
     <Section
       id="projects"
@@ -13,9 +14,9 @@ export function Projects() {
       subtitle="A mix of applied ML, deep learning research, LLM systems, and full-stack data products."
     >
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {PROJECTS.map((p, idx) => (
+        {projects.map((p, idx) => (
           <motion.article
-            key={p.title}
+            key={p.title + idx}
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
@@ -24,7 +25,7 @@ export function Projects() {
             className="group relative flex flex-col overflow-hidden rounded-3xl glass transition-shadow hover:shadow-crimson"
           >
             <div className="p-3">
-              <Placeholder label="PROJECT_IMAGE" aspect="aspect-[16/10]" />
+              <Media src={p.image} alt={p.title} label="PROJECT_IMAGE" aspect="aspect-[16/10]" />
             </div>
             <div className="flex flex-1 flex-col p-6 pt-2">
               <div className="flex items-start justify-between gap-3">
@@ -46,14 +47,18 @@ export function Projects() {
               </div>
               <div className="mt-5 flex items-center gap-2">
                 <a
-                  href="#"
+                  href={p.demo || "#"}
+                  target={p.demo ? "_blank" : undefined}
+                  rel={p.demo ? "noreferrer" : undefined}
                   className="inline-flex items-center gap-1.5 rounded-full bg-primary/15 px-3 py-1.5 text-xs font-medium text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
                 >
                   <ExternalLink className="h-3 w-3" />
                   Live Demo
                 </a>
                 <a
-                  href="#"
+                  href={p.github || "#"}
+                  target={p.github ? "_blank" : undefined}
+                  rel={p.github ? "noreferrer" : undefined}
                   className="inline-flex items-center gap-1.5 rounded-full border border-white/10 px-3 py-1.5 text-xs text-muted-foreground transition-colors hover:border-white/20 hover:text-foreground"
                 >
                   <Github className="h-3 w-3" />
