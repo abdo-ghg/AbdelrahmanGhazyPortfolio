@@ -10,6 +10,15 @@ import {
   BarChart3,
   Cpu,
 } from "lucide-react";
+import {
+  MAHARA_CERT_IMAGE,
+  MAHARA_CERT_PDF,
+  NASA_CERT_IMAGE,
+  NASA_CERT_PDF,
+  NASA_POSTER,
+  NTI_CERT_IMAGE,
+  ROBOTECH_CERT_IMAGE,
+} from "./assets";
 
 export const NAV_LINKS = [
   { href: "#about", label: "About" },
@@ -183,22 +192,43 @@ export const ACHIEVEMENTS = [
 ];
 
 export const CERTIFICATIONS = [
-  { title: "Machine Learning Specialization", issuer: "Coursera / DeepLearning.AI", date: "2024" },
-  { title: "Deep Learning Specialization", issuer: "Coursera / DeepLearning.AI", date: "2024" },
-  { title: "NTI Machine Learning Program", issuer: "NTI", date: "2024" },
-  { title: "IEEE Technical Instructor", issuer: "IEEE Al-Azhar SB", date: "2023" },
-  { title: "Elite Internship Program", issuer: "ASU Career Center", date: "2023" },
-  { title: "Power BI Data Analyst", issuer: "Microsoft", date: "2024" },
+  {
+    title: "NASA International Space Apps Challenge — Galactic Problem Solver",
+    issuer: "NASA",
+    date: "October 2025",
+    image: NASA_CERT_IMAGE,
+    link: NASA_CERT_PDF,
+  },
+  {
+    title: "Machine Learning for Data Analysis — Digital Egypt Youth (Score 95%)",
+    issuer: "NTI · Ministry of Communications and IT",
+    date: "August 2025",
+    image: NTI_CERT_IMAGE,
+    link: NTI_CERT_IMAGE,
+  },
+  {
+    title: "Python Programming Basics",
+    issuer: "ITI MaharaTech — AI Academy",
+    date: "November 2025",
+    image: MAHARA_CERT_IMAGE,
+    link: MAHARA_CERT_PDF,
+  },
+  {
+    title: "RoboTech Summer Training — Certificate of Appreciation",
+    issuer: "RoboTech",
+    date: "2025",
+    image: ROBOTECH_CERT_IMAGE,
+    link: ROBOTECH_CERT_IMAGE,
+  },
 ];
 
-export const GALLERY = [
-  "Competitions",
-  "Hackathons",
-  "IEEE",
-  "Volunteering",
-  "NASA Space Apps",
-  "UN Habitat",
-  "Conferences",
-  "Team Events",
-  "Workshops",
+export const GALLERY: { label: string; image?: string }[] = [
+  { label: "NASA Space Apps — Team Orbit5", image: NASA_POSTER },
+  { label: "NASA Space Apps Certificate", image: NASA_CERT_IMAGE },
+  { label: "Machine Learning for Data Analysis — NTI", image: NTI_CERT_IMAGE },
+  { label: "RoboTech Summer Training", image: ROBOTECH_CERT_IMAGE },
+  { label: "Python Programming Basics — ITI", image: MAHARA_CERT_IMAGE },
+  { label: "IEEE" },
+  { label: "UN Habitat" },
+  { label: "Conferences" },
 ];

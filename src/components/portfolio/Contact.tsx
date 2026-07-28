@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "motion/react";
 import { Mail, Linkedin, Github, MapPin, Download, Send, Check } from "lucide-react";
 import { Section } from "./Section";
+import { CV_URL } from "./assets";
 
 export function Contact() {
   const [sent, setSent] = useState(false);
@@ -48,7 +49,9 @@ export function Contact() {
             ))}
           </div>
           <a
-            href="/cv.pdf"
+            href={CV_URL}
+            target="_blank"
+            rel="noreferrer"
             className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-primary px-5 py-3 text-sm font-medium text-primary-foreground shadow-crimson transition-transform hover:scale-[1.02]"
           >
             <Download className="h-4 w-4" />

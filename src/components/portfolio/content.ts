@@ -41,7 +41,7 @@ export const DEFAULT_CONTENT: PortfolioContent = {
   projects: PROJECTS.map((p) => ({ ...p, tech: [...p.tech] })),
   achievements: ACHIEVEMENTS.map((a) => ({ ...a })),
   certifications: CERTIFICATIONS.map((c) => ({ ...c })),
-  gallery: GALLERY.map((label) => ({ label })),
+  gallery: GALLERY.map((g) => ({ ...g })),
 };
 
 function asArray<T>(value: unknown, map: (raw: any) => T | null): T[] | null {
