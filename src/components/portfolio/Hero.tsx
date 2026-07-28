@@ -1,7 +1,8 @@
 import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
 import { useEffect } from "react";
-import { ArrowRight, Download, Mail, User } from "lucide-react";
+import { ArrowRight, Download, Mail } from "lucide-react";
 import { Particles } from "./Particles";
+import { CV_URL, PROFILE_IMAGE } from "./assets";
 
 export function Hero() {
   const mx = useMotionValue(0);
@@ -99,7 +100,9 @@ export function Hero() {
             className="mt-9 flex flex-wrap items-center gap-3"
           >
             <a
-              href="/cv.pdf"
+              href={CV_URL}
+              target="_blank"
+              rel="noreferrer"
               className="group inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-medium text-primary-foreground shadow-crimson transition-all hover:scale-[1.03] hover:shadow-[0_20px_60px_-15px_rgba(220,20,60,0.7)]"
             >
               <Download className="h-4 w-4" />
