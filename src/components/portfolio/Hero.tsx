@@ -155,27 +155,15 @@ export function Hero() {
             }}
           />
           <div className="absolute inset-[3px] rounded-full bg-[#0a0a0a]" />
-          <div
-            className="absolute inset-[6px] rounded-full glass-strong overflow-hidden"
-            data-placeholder="PROFILE_IMAGE_PLACEHOLDER"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/30 via-background to-background" />
-            <div
-              className="absolute inset-0 opacity-30"
-              style={{
-                backgroundImage:
-                  "radial-gradient(circle at 30% 30%, rgba(255,255,255,0.2), transparent 55%)",
-              }}
+          <div className="absolute inset-[6px] overflow-hidden rounded-full glass-strong">
+            <img
+              src={PROFILE_IMAGE}
+              alt="Portrait of Abdelrahman Bakr Ghazy, AI and Machine Learning Engineer"
+              className="absolute inset-0 h-full w-full object-cover"
             />
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-center">
-              <div className="grid h-20 w-20 place-items-center rounded-full bg-white/5 backdrop-blur">
-                <User className="h-9 w-9 text-white/70" />
-              </div>
-              <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
-                PROFILE_IMAGE_PLACEHOLDER
-              </span>
-            </div>
+            <div className="absolute inset-0 rounded-full ring-1 ring-inset ring-white/10" />
           </div>
+
 
           {/* Orbiting dots */}
           {[0, 1, 2].map((i) => (
