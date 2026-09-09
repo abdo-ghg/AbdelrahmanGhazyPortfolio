@@ -45,32 +45,32 @@ export function Projects() {
                   </span>
                 ))}
               </div>
-              <div className="mt-5 flex items-center gap-2">
-                <a
-                  href={p.demo || "#"}
-                  target={p.demo ? "_blank" : undefined}
-                  rel={p.demo ? "noreferrer" : undefined}
-                  className="inline-flex items-center gap-1.5 rounded-full bg-primary/15 px-3 py-1.5 text-xs font-medium text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
-                >
-                  <ExternalLink className="h-3 w-3" />
-                  Live Demo
-                </a>
-                <a
-                  href={p.github || "#"}
-                  target={p.github ? "_blank" : undefined}
-                  rel={p.github ? "noreferrer" : undefined}
-                  className="inline-flex items-center gap-1.5 rounded-full border border-white/10 px-3 py-1.5 text-xs text-muted-foreground transition-colors hover:border-white/20 hover:text-foreground"
-                >
-                  <Github className="h-3 w-3" />
-                  GitHub
-                </a>
-                <a
-                  href="#"
-                  className="ml-auto text-xs text-muted-foreground hover:text-foreground"
-                >
-                  Details →
-                </a>
-              </div>
+              {(p.demo || p.github) && (
+                <div className="mt-5 flex items-center gap-2">
+                  {p.demo && (
+                    <a
+                      href={p.demo}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-1.5 rounded-full bg-primary/15 px-3 py-1.5 text-xs font-medium text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
+                    >
+                      <ExternalLink className="h-3 w-3" />
+                      Live Demo
+                    </a>
+                  )}
+                  {p.github && (
+                    <a
+                      href={p.github}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-1.5 rounded-full border border-white/10 px-3 py-1.5 text-xs text-muted-foreground transition-colors hover:border-white/20 hover:text-foreground"
+                    >
+                      <Github className="h-3 w-3" />
+                      GitHub
+                    </a>
+                  )}
+                </div>
+              )}
             </div>
           </motion.article>
         ))}

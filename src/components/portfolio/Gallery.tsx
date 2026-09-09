@@ -37,7 +37,6 @@ export function Gallery() {
               transition={{ duration: 0.5, delay: (idx % 8) * 0.04 }}
               whileHover={{ scale: 1.02 }}
               className={`group relative overflow-hidden rounded-2xl glass text-left ${span}`}
-              data-placeholder="PHOTO_PLACEHOLDER"
             >
               {item.image ? (
                 <img
@@ -47,19 +46,18 @@ export function Gallery() {
                   className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
               ) : null}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-white/5" />
               <div
-                className="absolute inset-0 opacity-30"
-                style={{
-                  backgroundImage:
-                    "radial-gradient(circle at 30% 20%, rgba(255,255,255,0.25), transparent 60%)",
-                }}
+                className={`absolute inset-0 ${
+                  item.image
+                    ? "bg-gradient-to-t from-black/70 via-black/10 to-transparent"
+                    : "bg-gradient-to-br from-primary/20 via-transparent to-white/5"
+                }`}
               />
               <div className="absolute inset-0 flex items-end justify-between p-4">
                 <div>
                   {!item.image && (
                     <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
-                      PHOTO_PLACEHOLDER
+                      Add a photo
                     </div>
                   )}
                   <div className="mt-1 text-sm font-medium">{item.label}</div>
@@ -96,22 +94,24 @@ export function Gallery() {
                   alt={gallery[open].label}
                   className="absolute inset-0 h-full w-full object-contain"
                 />
-              ) : null}
-              <div className="absolute inset-0 grid place-items-center">
-                <div className="text-center">
-                  {!gallery[open]?.image && (
-                    <>
-                      <ImageIcon className="mx-auto h-10 w-10 text-white/60" />
-                      <div className="mt-3 font-mono text-xs uppercase tracking-[0.25em] text-muted-foreground">
-                        PHOTO_PLACEHOLDER
-                      </div>
-                    </>
-                  )}
-                  <div className="mt-2 text-lg font-medium">
-                    {gallery[open]?.label}
+              ) : (
+                <div className="absolute inset-0 grid place-items-center">
+                  <div className="text-center">
+                    <ImageIcon className="mx-auto h-10 w-10 text-white/60" />
+                    <div className="mt-3 font-mono text-xs uppercase tracking-[0.25em] text-muted-foreground">
+                      Add a photo
+                    </div>
+                    <div className="mt-2 text-lg font-medium">
+                      {gallery[open]?.label}
+                    </div>
                   </div>
                 </div>
-              </div>
+              )}
+              {gallery[open]?.image ? (
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-5">
+                  <div className="text-lg font-medium">{gallery[open]?.label}</div>
+                </div>
+              ) : null}
               <button
                 onClick={() => setOpen(null)}
                 aria-label="Close"

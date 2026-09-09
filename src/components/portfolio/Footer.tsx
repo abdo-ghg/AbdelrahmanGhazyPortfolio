@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { ArrowUp, Github, Linkedin, Mail } from "lucide-react";
+import { SOCIALS } from "./data";
 
 export function Footer() {
   const [visible, setVisible] = useState(false);
@@ -19,14 +20,16 @@ export function Footer() {
         </p>
         <div className="flex items-center gap-2">
           {[
-            { Icon: Github, href: "#", label: "GitHub" },
-            { Icon: Linkedin, href: "#", label: "LinkedIn" },
-            { Icon: Mail, href: "mailto:abdelrahman.bakr@example.com", label: "Email" },
+            { Icon: Github, href: SOCIALS.githubUrl, label: "GitHub" },
+            { Icon: Linkedin, href: SOCIALS.linkedinUrl, label: "LinkedIn" },
+            { Icon: Mail, href: `mailto:${SOCIALS.email}`, label: "Email" },
           ].map(({ Icon, href, label }) => (
             <a
               key={label}
               href={href}
               aria-label={label}
+              target={href.startsWith("http") ? "_blank" : undefined}
+              rel={href.startsWith("http") ? "noreferrer" : undefined}
               className="grid h-9 w-9 place-items-center rounded-full border border-white/10 bg-white/[0.03] text-muted-foreground transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:text-primary"
             >
               <Icon className="h-4 w-4" />

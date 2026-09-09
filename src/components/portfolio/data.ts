@@ -17,8 +17,18 @@ import {
   NASA_CERT_PDF,
   NASA_POSTER,
   NTI_CERT_IMAGE,
+  PROFILE_IMAGE,
   ROBOTECH_CERT_IMAGE,
 } from "./assets";
+
+export const SOCIALS = {
+  email: "abdelrahmanbakrghazy@gmail.com",
+  githubUrl: "https://github.com/abdo-ghg",
+  githubLabel: "github.com/abdo-ghg",
+  linkedinUrl: "https://www.linkedin.com/in/abdelrahman-bakr-mabrouk-ghazy-7606053b0",
+  linkedinLabel: "linkedin.com/in/abdelrahman-bakr-mabrouk-ghazy",
+  mapsUrl: "https://maps.google.com/?q=Cairo,+Egypt",
+};
 
 export const NAV_LINKS = [
   { href: "#about", label: "About" },
@@ -223,12 +233,16 @@ export const CERTIFICATIONS = [
 ];
 
 export const GALLERY: { label: string; image?: string }[] = [
+  { label: "Portrait", image: PROFILE_IMAGE },
   { label: "NASA Space Apps — Team Orbit5", image: NASA_POSTER },
   { label: "NASA Space Apps Certificate", image: NASA_CERT_IMAGE },
   { label: "Machine Learning for Data Analysis — NTI", image: NTI_CERT_IMAGE },
   { label: "RoboTech Summer Training", image: ROBOTECH_CERT_IMAGE },
   { label: "Python Programming Basics — ITI", image: MAHARA_CERT_IMAGE },
-  { label: "IEEE" },
-  { label: "UN Habitat" },
+  { label: "IEEE Al-Azhar Student Branch" },
+  { label: "IEEE technical sessions" },
+  { label: "UN Habitat — World Urban Forum" },
   { label: "Conferences" },
+  { label: "Workshops & camps" },
+  { label: "Hackathons" },
 ];

@@ -3,8 +3,11 @@ import { useEffect } from "react";
 import { ArrowRight, Download, Mail } from "lucide-react";
 import { Particles } from "./Particles";
 import { CV_URL, PROFILE_IMAGE } from "./assets";
+import { useContent } from "./useContent";
 
 export function Hero() {
+  const { profileImage } = useContent();
+  const portrait = profileImage || PROFILE_IMAGE;
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
   const sx = useSpring(mx, { stiffness: 60, damping: 20 });
@@ -70,9 +73,19 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="text-balance text-5xl font-semibold leading-[1.02] tracking-tight sm:text-6xl md:text-7xl lg:text-[5.5rem]"
           >
-            Abdelrahman <br className="hidden sm:block" />
+            Abdelrahman Bakr Mabrouk Ghazy
+            <br className="hidden sm:block" />
             <span className="text-gradient animate-gradient">Bakr Ghazy</span>
           </motion.h1>
+
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.25 }}
+            className="mt-3 text-sm text-muted-foreground"
+          >
+            العنتيل عبدالرحمن
+          </motion.div>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -160,7 +173,7 @@ export function Hero() {
           <div className="absolute inset-[3px] rounded-full bg-[#0a0a0a]" />
           <div className="absolute inset-[6px] overflow-hidden rounded-full glass-strong">
             <img
-              src={PROFILE_IMAGE}
+              src={portrait}
               alt="Portrait of Abdelrahman Bakr Ghazy, AI and Machine Learning Engineer"
               className="absolute inset-0 h-full w-full object-cover"
             />

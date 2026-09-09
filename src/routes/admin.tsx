@@ -5,6 +5,7 @@ import {
   Check,
   Copy,
   Download,
+  ImagePlus,
   Plus,
   RotateCcw,
   Save,
@@ -21,6 +22,7 @@ import {
   writeStoredContent,
   type PortfolioContent,
 } from "@/components/portfolio/content";
+import { compressImageFile, compressImageFiles } from "@/components/portfolio/imageUpload";
 
 export const Route = createFileRoute("/admin")({
   head: () => ({
@@ -91,6 +93,90 @@ function Field({
         />
       )}
     </label>
+  );
+}
+
+function ImageField({
+  label,
+  value,
+  onChange,
+}: {
+  label: string;
+  value: string;
+  onChange: (v: string) => void;
+}) {
+  const ref = useRef<HTMLInputElement>(null);
+  const [busy, setBusy] = useState(false);
+
+  const pick = async (file?: File) => {
+    if (!file) return;
+    setBusy(true);
+    try {
+      onChange(await compressImageFile(file));
+    } catch {
+      onChange("");
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  return (
+    <div>
+      <span className="mb-1.5 block text-[11px] font-medium uppercase tracking-widest text-muted-foreground">
+        {label}
+      </span>
+      <div className="flex gap-3">
+        <button
+          type="button"
+          onClick={() => ref.current?.click()}
+          className="relative h-24 w-24 shrink-0 overflow-hidden rounded-xl border border-white/10 bg-white/[0.03]"
+        >
+          {value ? (
+            <img src={value} alt="" className="h-full w-full object-cover" />
+          ) : (
+            <span className="grid h-full place-items-center text-muted-foreground">
+              <ImagePlus className="h-5 w-5" />
+            </span>
+          )}
+        </button>
+        <div className="min-w-0 flex-1 space-y-2">
+          <input
+            value={value.startsWith("data:") ? "" : value}
+            placeholder={value.startsWith("data:") ? "Uploaded photo" : "Paste a URL or upload"}
+            onChange={(e) => onChange(e.target.value)}
+            className={inputCls}
+          />
+          <div className="flex flex-wrap gap-2">
+            <button
+              type="button"
+              onClick={() => ref.current?.click()}
+              className="rounded-full border border-white/10 px-3 py-1.5 text-xs text-muted-foreground hover:text-foreground"
+            >
+              {busy ? "Compressing…" : "Choose photo"}
+            </button>
+            {value ? (
+              <button
+                type="button"
+                onClick={() => onChange("")}
+                className="rounded-full border border-white/10 px-3 py-1.5 text-xs text-muted-foreground hover:text-primary"
+              >
+                Remove
+              </button>
+            ) : null}
+          </div>
+        </div>
+        <input
+          ref={ref}
+          type="file"
+          accept="image/*"
+          className="hidden"
+          onChange={(e) => {
+            void pick(e.target.files?.[0]);
+            e.target.value = "";
+          }}
+        />
+      </div>
+    </div>
   );
 }
 
@@ -184,8 +270,12 @@ function AdminPage() {
   }
 
   const save = () => {
-    writeStoredContent(content);
-    setStatus("Saved — your site is updated.");
+    try {
+      writeStoredContent(content);
+      setStatus("Saved — your site is updated.");
+    } catch (err) {
+      setStatus(err instanceof Error ? err.message : "Could not save.");
+    }
   };
 
   const reset = () => {
@@ -244,11 +334,18 @@ function AdminPage() {
             Update your portfolio without code.
           </h1>
           <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-            Changes are saved in this browser instantly. Export the JSON to back
-            it up or to move your content to another device — then import it
-            there.
+            Changes are saved in this browser. Upload photos from your computer
+            — they appear on the live site after you hit Save.
           </p>
         </header>
+
+        <div className="mt-6 rounded-2xl glass p-5">
+          <ImageField
+            label="Hero portrait"
+            value={content.profileImage ?? ""}
+            onChange={(v) => setContent((c) => ({ ...c, profileImage: v || undefined }))}
+          />
+        </div>
 
         <div className="sticky top-4 z-20 mt-8 rounded-2xl glass-strong p-3">
           <div className="flex flex-wrap items-center gap-2">
@@ -374,13 +471,12 @@ function AdminPage() {
                   }
                 />
                 <div className="grid gap-4 sm:grid-cols-3">
-                  <Field
-                    label="Image URL"
-                    placeholder="https://…"
+                  <ImageField
+                    label="Project photo"
                     value={p.image ?? ""}
                     onChange={(v) =>
                       update("projects", (it) =>
-                        it.map((x, y) => (y === i ? { ...x, image: v } : x)),
+                        it.map((x, y) => (y === i ? { ...x, image: v || undefined } : x)),
                       )
                     }
                   />
@@ -486,13 +582,12 @@ function AdminPage() {
                   />
                 </div>
                 <div className="grid gap-4 sm:grid-cols-2">
-                  <Field
-                    label="Image URL"
-                    placeholder="https://…"
+                  <ImageField
+                    label="Certificate photo"
                     value={c.image ?? ""}
                     onChange={(v) =>
                       update("certifications", (it) =>
-                        it.map((x, y) => (y === i ? { ...x, image: v } : x)),
+                        it.map((x, y) => (y === i ? { ...x, image: v || undefined } : x)),
                       )
                     }
                   />
@@ -510,41 +605,98 @@ function AdminPage() {
               </ItemCard>
             ))}
 
-          {tab === "gallery" &&
-            content.gallery.map((g, i) => (
-              <ItemCard
-                key={i}
-                index={i}
-                total={content.gallery.length}
-                title={g.label}
-                onMove={(d) => update("gallery", (it) => move(it, i, d))}
-                onRemove={() =>
-                  update("gallery", (it) => it.filter((_, x) => x !== i))
-                }
+          {tab === "gallery" && (
+            <>
+              <label
+                onDragOver={(e) => e.preventDefault()}
+                onDrop={(e) => {
+                  e.preventDefault();
+                  const files = e.dataTransfer.files;
+                  if (!files.length) return;
+                  void compressImageFiles(files).then((items) => {
+                    if (!items.length) return;
+                    update("gallery", (it) => {
+                      const next = [...it];
+                      for (const item of items) {
+                        const empty = next.findIndex((g) => !g.image);
+                        if (empty >= 0) next[empty] = { ...next[empty], image: item.image };
+                        else next.push(item);
+                      }
+                      return next;
+                    });
+                    setStatus(
+                      `Added ${items.length} photo${items.length === 1 ? "" : "s"}. Click Save.`,
+                    );
+                  });
+                }}
+                className="flex cursor-pointer flex-col items-center justify-center gap-2 rounded-2xl border border-dashed border-white/15 px-4 py-8 text-center text-sm text-muted-foreground transition-colors hover:border-primary/40 hover:text-primary"
               >
-                <div className="grid gap-4 sm:grid-cols-[1fr_2fr]">
-                  <Field
-                    label="Caption"
-                    value={g.label}
-                    onChange={(v) =>
-                      update("gallery", (it) =>
-                        it.map((x, y) => (y === i ? { ...x, label: v } : x)),
-                      )
-                    }
-                  />
-                  <Field
-                    label="Image URL"
-                    placeholder="https://…"
-                    value={g.image ?? ""}
-                    onChange={(v) =>
-                      update("gallery", (it) =>
-                        it.map((x, y) => (y === i ? { ...x, image: v } : x)),
-                      )
-                    }
-                  />
-                </div>
-              </ItemCard>
-            ))}
+                <ImagePlus className="h-5 w-5" />
+                Drop several photos here, or click to add them
+                <input
+                  type="file"
+                  accept="image/*"
+                  multiple
+                  className="hidden"
+                  onChange={(e) => {
+                    const files = e.target.files;
+                    if (!files?.length) return;
+                    void compressImageFiles(files).then((items) => {
+                      if (!items.length) return;
+                      update("gallery", (it) => {
+                        const next = [...it];
+                        for (const item of items) {
+                          const empty = next.findIndex((g) => !g.image);
+                          if (empty >= 0) next[empty] = { ...next[empty], image: item.image };
+                          else next.push(item);
+                        }
+                        return next;
+                      });
+                      setStatus(
+                        `Added ${items.length} photo${items.length === 1 ? "" : "s"}. Click Save.`,
+                      );
+                    });
+                    e.target.value = "";
+                  }}
+                />
+              </label>
+              {content.gallery.map((g, i) => (
+                <ItemCard
+                  key={i}
+                  index={i}
+                  total={content.gallery.length}
+                  title={g.label}
+                  onMove={(d) => update("gallery", (it) => move(it, i, d))}
+                  onRemove={() =>
+                    update("gallery", (it) => it.filter((_, x) => x !== i))
+                  }
+                >
+                  <div className="grid gap-4 sm:grid-cols-[1fr_2fr]">
+                    <Field
+                      label="Caption"
+                      value={g.label}
+                      onChange={(v) =>
+                        update("gallery", (it) =>
+                          it.map((x, y) => (y === i ? { ...x, label: v } : x)),
+                        )
+                      }
+                    />
+                    <ImageField
+                      label="Photo"
+                      value={g.image ?? ""}
+                      onChange={(v) =>
+                        update("gallery", (it) =>
+                          it.map((x, y) =>
+                            y === i ? { ...x, image: v || undefined } : x,
+                          ),
+                        )
+                      }
+                    />
+                  </div>
+                </ItemCard>
+              ))}
+            </>
+          )}
 
           <button
             onClick={() => {

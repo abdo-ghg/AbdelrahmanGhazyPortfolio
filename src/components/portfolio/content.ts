@@ -28,6 +28,7 @@ export type GalleryItem = {
 };
 
 export type PortfolioContent = {
+  profileImage?: string;
   projects: ProjectItem[];
   achievements: AchievementItem[];
   certifications: CertificationItem[];
@@ -103,6 +104,7 @@ export function normalizeContent(input: unknown): PortfolioContent {
   });
 
   return {
+    profileImage: optStr(data.profileImage) ?? DEFAULT_CONTENT.profileImage,
     projects: projects ?? DEFAULT_CONTENT.projects,
     achievements: achievements ?? DEFAULT_CONTENT.achievements,
     certifications: certifications ?? DEFAULT_CONTENT.certifications,
@@ -123,7 +125,13 @@ export function readStoredContent(): PortfolioContent | null {
 
 export function writeStoredContent(content: PortfolioContent) {
   if (typeof window === "undefined") return;
-  window.localStorage.setItem(CONTENT_STORAGE_KEY, JSON.stringify(content));
+  try {
+    window.localStorage.setItem(CONTENT_STORAGE_KEY, JSON.stringify(content));
+  } catch {
+    throw new Error(
+      "These photos are too large for this browser to remember. Try fewer or smaller images.",
+    );
+  }
   window.dispatchEvent(new Event(CONTENT_UPDATED_EVENT));
 }
 
