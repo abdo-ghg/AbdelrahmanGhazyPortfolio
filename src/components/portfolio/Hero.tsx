@@ -84,7 +84,6 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.25 }}
             className="mt-3 text-sm text-muted-foreground"
           >
-            العنتيل عبدالرحمن
           </motion.div>
 
           <motion.p
