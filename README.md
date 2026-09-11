@@ -1,29 +1,71 @@
-# Welcome to your Lovable project
+# Abdelrahman Ghazy Portfolio
 
-This project was built with [Lovable](https://lovable.dev).
+A modern portfolio website built with React, TypeScript, Tailwind CSS, and TanStack Start. It showcases architecture-focused work, certifications, projects, education, and contact information in a polished single-page experience.
 
-## Build with Lovable
+## Features
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+- Responsive portfolio layout
+- Project and experience sections
+- Achievement and education highlights
+- Contact and social links
+- Smooth modern visual design
+- Static site generation support through TanStack Start
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
+## Tech Stack
 
-## Development
+- React 19
+- TypeScript
+- Vite
+- TanStack Start
+- Tailwind CSS
+- Framer Motion
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+## Getting Started
 
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
+### Prerequisites
+
+- Node.js 18+
+- npm or bun
+
+### Install dependencies
+
+```bash
+npm install
+```
+
+### Run locally
+
+```bash
 npm run dev
 ```
 
-## Built with
+Then open the local URL shown in the terminal, typically http://localhost:3000.
 
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
+### Production build
+
+```bash
+npm run build
+```
+
+### Preview production build
+
+```bash
+npm run preview
+```
+
+## Project structure
+
+```text
+src/
+  components/
+  routes/
+  assets/
+  router.tsx
+  server.ts
+  start.ts
+public/
+```
+
+## License
+
+This project is for portfolio use and is not currently configured for commercial redistribution unless explicitly stated by the owner.
