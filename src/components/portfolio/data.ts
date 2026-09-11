@@ -123,6 +123,7 @@ export const EXPERIENCE = [
   {
     org: "IEEE Al-Azhar Student Branch",
     role: "Technical Instructor",
+    icon: "graduation",
     bullets: [
       "Delivered programming and technical sessions for students.",
       "Prepared technical content and presentations for student camps and activities.",
@@ -132,6 +133,7 @@ export const EXPERIENCE = [
   {
     org: "United Nations Habitat — World Urban Forum (WUF12)",
     role: "Volunteer",
+    icon: "heart",
     bullets: [
       "Supported UN-Habitat event operations during the World Urban Forum.",
       "Coordinated with teams to handle event logistics and visitor support.",
@@ -141,6 +143,7 @@ export const EXPERIENCE = [
   {
     org: "ASU Career Center",
     role: "Elite Internship Program",
+    icon: "sparkles",
     bullets: [
       "Participated in leadership and project coordination activities.",
       "Worked on event management and team collaboration processes.",
@@ -150,6 +153,7 @@ export const EXPERIENCE = [
   {
     org: "NTI · National Telecommunication Institute",
     role: "Machine Learning & Data Analysis Trainee",
+    icon: "book",
     bullets: [
       "Studied machine learning, data analysis, and Python-based data workflows.",
       "Worked with preprocessing, EDA, visualization, feature engineering, and model development.",
