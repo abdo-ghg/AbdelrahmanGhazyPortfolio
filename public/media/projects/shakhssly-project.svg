@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">Shakhssly project placeholder</title>
+  <desc id="desc">Placeholder artwork for the Shakhssly project.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#0b1120"/>
+      <stop offset="50%" stop-color="#102A43"/>
+      <stop offset="100%" stop-color="#14532d"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <circle cx="930" cy="160" r="190" fill="#22c55e" opacity="0.16"/>
+  <circle cx="260" cy="660" r="220" fill="#38bdf8" opacity="0.15"/>
+  <rect x="95" y="140" width="1010" height="520" rx="32" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.18)"/>
+  <text x="120" y="290" fill="#f8fafc" font-size="64" font-family="Segoe UI, Arial, sans-serif" font-weight="700">Shakhssly</text>
+  <text x="120" y="370" fill="#e2e8f0" font-size="30" font-family="Segoe UI, Arial, sans-serif">Arabic telemedicine & triage AI</text>
+  <text x="120" y="560" fill="#86efac" font-size="24" font-family="Segoe UI, Arial, sans-serif" letter-spacing="4">HEALTHCARE AI</text>
+</svg>

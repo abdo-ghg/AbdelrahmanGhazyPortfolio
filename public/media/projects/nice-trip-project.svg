@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">NICE TRIP project placeholder</title>
+  <desc id="desc">Placeholder artwork for the NICE TRIP project.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#111827"/>
+      <stop offset="50%" stop-color="#1f2937"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <circle cx="900" cy="165" r="210" fill="#8b5cf6" opacity="0.20"/>
+  <circle cx="260" cy="660" r="240" fill="#a78bfa" opacity="0.12"/>
+  <rect x="95" y="140" width="1010" height="520" rx="32" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.18)"/>
+  <text x="120" y="290" fill="#f8fafc" font-size="64" font-family="Segoe UI, Arial, sans-serif" font-weight="700">NICE TRIP</text>
+  <text x="120" y="370" fill="#e2e8f0" font-size="30" font-family="Segoe UI, Arial, sans-serif">Students, leadership & civic growth</text>
+  <text x="120" y="560" fill="#d8b4fe" font-size="24" font-family="Segoe UI, Arial, sans-serif" letter-spacing="4">COMMUNITY LEADERSHIP</text>
+</svg>

@@ -4,6 +4,8 @@ export type ProjectItem = {
   title: string;
   description: string;
   tech: string[];
+  role?: string;
+  impact?: string;
   image?: string;
   demo?: string;
   github?: string;
@@ -72,6 +74,8 @@ export function normalizeContent(input: unknown): PortfolioContent {
       tech: Array.isArray(raw.tech)
         ? raw.tech.filter((t: unknown): t is string => typeof t === "string")
         : [],
+      role: optStr(raw.role),
+      impact: optStr(raw.impact),
       image: optStr(raw.image),
       demo: optStr(raw.demo),
       github: optStr(raw.github),

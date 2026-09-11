@@ -29,12 +29,22 @@ export function Projects() {
             </div>
             <div className="flex flex-1 flex-col p-6 pt-2">
               <div className="flex items-start justify-between gap-3">
-                <h3 className="text-lg font-semibold tracking-tight">{p.title}</h3>
+                <div>
+                  {p.role && (
+                    <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-primary/80">
+                      {p.role}
+                    </p>
+                  )}
+                  <h3 className="text-lg font-semibold tracking-tight">{p.title}</h3>
+                </div>
                 <ArrowUpRight className="mt-1 h-4 w-4 shrink-0 text-muted-foreground transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary" />
               </div>
               <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
                 {p.description}
               </p>
+              {p.impact && (
+                <p className="mt-2 text-xs font-medium text-foreground/80">{p.impact}</p>
+              )}
               <div className="mt-4 flex flex-wrap gap-1.5">
                 {p.tech.map((t) => (
                   <span

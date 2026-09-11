@@ -11,6 +11,10 @@ import {
   Cpu,
 } from "lucide-react";
 import {
+  CONFERENCE_IMAGE,
+  HACKATHON_IMAGE,
+  IEEE_BRANCH_IMAGE,
+  IEEE_TECHNICAL_IMAGE,
   MAHARA_CERT_IMAGE,
   MAHARA_CERT_PDF,
   NASA_CERT_IMAGE,
@@ -19,6 +23,9 @@ import {
   NTI_CERT_IMAGE,
   PROFILE_IMAGE,
   ROBOTECH_CERT_IMAGE,
+  ROBOTECH_TRAINING_IMAGE,
+  UN_HABITAT_IMAGE,
+  WORKSHOP_IMAGE,
 } from "./assets";
 
 export const SOCIALS = {
@@ -117,80 +124,112 @@ export const EXPERIENCE = [
     org: "IEEE Al-Azhar Student Branch",
     role: "Technical Instructor",
     bullets: [
-      "Delivered technical sessions.",
-      "Mentored students.",
-      "Organized technical camps.",
+      "Delivered programming and technical sessions for students.",
+      "Prepared technical content and presentations for student camps and activities.",
+      "Worked with teams to explain technical concepts and support collaborative learning.",
     ],
   },
   {
-    org: "United Nations Habitat (World Urban Forum)",
+    org: "United Nations Habitat — World Urban Forum (WUF12)",
     role: "Volunteer",
     bullets: [
-      "International event operations.",
-      "Team coordination.",
-      "Visitor support.",
+      "Supported UN-Habitat event operations during the World Urban Forum.",
+      "Coordinated with teams to handle event logistics and visitor support.",
+      "Contributed to communication and operational support for a large international event.",
     ],
   },
   {
     org: "ASU Career Center",
     role: "Elite Internship Program",
-    bullets: ["Leadership", "Event Management", "Project Coordination"],
+    bullets: [
+      "Participated in leadership and project coordination activities.",
+      "Worked on event management and team collaboration processes.",
+      "Developed practical experience in communication, planning, and execution.",
+    ],
   },
   {
-    org: "NTI",
-    role: "Machine Learning Internship",
-    bullets: ["Machine Learning", "Model Development", "Data Analysis"],
+    org: "NTI · National Telecommunication Institute",
+    role: "Machine Learning & Data Analysis Trainee",
+    bullets: [
+      "Studied machine learning, data analysis, and Python-based data workflows.",
+      "Worked with preprocessing, EDA, visualization, feature engineering, and model development.",
+      "Built a foundation for applying ML and analytics to real-world problems.",
+    ],
   },
 ];
 
 export const PROJECTS = [
   {
-    title: "Retail Buyer Segmentation",
+    title: "Boomerang",
+    role: "Founder / Product Builder",
+    tech: ["Python", "SQL", "Analytics", "Retention", "Startup Metrics"],
+    description:
+      "Analytics solution for Egyptian startup founders to track customer retention, repeat purchases, and growth signals.",
+    impact: "Helps founders turn customer behavior into actionable retention and revenue insights.",
+    image: "/media/projects/boomerang-project.svg",
+  },
+  {
+    title: "Shakhssly",
+    role: "AI Product Contributor",
+    tech: ["Python", "Flask", "LLM", "Arabic NLP", "Healthcare AI"],
+    description:
+      "AI-powered telemedicine platform with an Arabic medical chatbot named ودود for symptom triage and clinic workflow support.",
+    impact: "Brings conversational AI and digital triage support into an Arabic healthcare context.",
+    image: "/media/projects/shakhssly-project.svg",
+  },
+  {
+    title: "NICE TRIP",
+    role: "Initiative Lead",
+    tech: ["Leadership", "Community Engagement", "Education", "Civic Participation"],
+    description:
+      "Initiative designed to guide university students toward active civic participation, leadership, and meaningful academic achievement.",
+    impact: "Connects student growth, leadership, and real-world engagement beyond the classroom.",
+    image: "/media/projects/nice-trip-project.svg",
+  },
+  {
+    title: "Retail Buyer Segmentation System",
+    role: "Data Science & ML Engineer",
     tech: ["Flask", "Scikit-Learn", "KMeans", "Logistic Regression", "XGBoost"],
     description:
-      "End-to-end ML platform combining K-Means clustering and six classifiers, achieving 99.55% accuracy with automated preprocessing and business analytics.",
+      "End-to-end customer intelligence platform using K-Means clustering, 23-feature data preparation, and six classification models for buyer segmentation and business analysis.",
+    impact: "Achieved 99.55% accuracy with Logistic Regression and demonstrated a full data-to-product workflow.",
+    image: "/media/projects/retail-buyer-segmentation-project.svg",
   },
   {
     title: "Emotion Detection System",
-    tech: ["PyTorch", "Vision Transformers", "ViT", "DeiT", "ConvNeXt"],
+    role: "Deep Learning Researcher",
+    tech: ["PyTorch", "ViT", "DeiT", "ConvNeXt", "Computer Vision"],
     description:
-      "Advanced facial emotion recognition models achieving 74.8% Kaggle accuracy and 1st Place using Vision Transformers and deep learning.",
+      "Facial emotion recognition project using advanced vision models including ViT, DeiT, and CNN-based architectures for accurate classification.",
+    impact: "Reached 1st place in a Kaggle competition and showed strong deep-learning and CV execution.",
+    image: "/media/projects/emotion-detection-project.svg",
   },
   {
-    title: "Vitamin Deficiency Prediction",
-    tech: ["Python", "XGBoost", "Scikit-Learn"],
+    title: "Vitamin Deficiency Prediction System",
+    role: "ML / Analytics Builder",
+    tech: ["Python", "XGBoost", "Scikit-Learn", "Feature Engineering"],
     description:
-      "Regression and classification pipelines for vitamin deficiency prediction using feature engineering and machine learning.",
+      "Dual-task prediction system for vitamin deficiency severity and related condition categories using feature engineering, model tuning, and explainable ML workflows.",
+    impact: "Combined regression and classification to support practical health-data decision making.",
+    image: "/media/projects/vitamin-deficiency-project.svg",
   },
   {
-    title: "Lung Cancer Survival Prediction",
-    tech: ["Python", "Scikit-Learn", "Pandas"],
+    title: "Custom Neural Network / Autograd Engine",
+    role: "AI Systems Builder",
+    tech: ["Python", "NumPy", "Autograd", "Neural Networks", "Deep Learning"],
     description:
-      "Machine learning models predicting patient survival using clinical datasets.",
+      "Built an automatic differentiation engine from scratch, including computational graphs, backpropagation, tensor operations, and custom training logic.",
+    impact: "Demonstrates a strong understanding of the mechanics behind modern deep-learning frameworks.",
+    image: "/media/projects/autograd-engine-project.svg",
   },
   {
-    title: "Medical Diagnosis Expert System",
-    tech: ["Python", "Streamlit", "Rule Engine"],
+    title: "Perceptron & Adaline From Scratch",
+    role: "ML Foundations Builder",
+    tech: ["Python", "NumPy", "ML Basics", "Data Preprocessing"],
     description:
-      "Rule-based medical diagnosis chatbot with a Streamlit interface.",
-  },
-  {
-    title: "Billing System",
-    tech: ["Oracle", "SQL", "Java"],
-    description:
-      "Oracle database application for invoices, payments, customers, and transactions.",
-  },
-  {
-    title: "Business Analytics Dashboard",
-    tech: ["Power BI", "SQL", "DAX"],
-    description:
-      "Marketing analytics dashboard providing insights into customer behavior and revenue.",
-  },
-  {
-    title: "LLM & RAG Assistant",
-    tech: ["LangChain", "Embeddings", "Vector DB", "LLMs"],
-    description:
-      "Retrieval-Augmented Generation applications using embeddings, vector databases, and LLMs.",
+      "Implemented Perceptron and Adaline models from scratch with preprocessing, feature scaling, one-hot encoding, and decision-boundary analysis.",
+    impact: "Strengthens fundamentals in model logic, optimization, and data preparation.",
+    image: "/media/projects/perceptron-adaline-project.svg",
   },
 ];
 
@@ -237,12 +276,12 @@ export const GALLERY: { label: string; image?: string }[] = [
   { label: "NASA Space Apps — Team Orbit5", image: NASA_POSTER },
   { label: "NASA Space Apps Certificate", image: NASA_CERT_IMAGE },
   { label: "Machine Learning for Data Analysis — NTI", image: NTI_CERT_IMAGE },
-  { label: "RoboTech Summer Training", image: ROBOTECH_CERT_IMAGE },
+  { label: "RoboTech Summer Training", image: ROBOTECH_TRAINING_IMAGE },
   { label: "Python Programming Basics — ITI", image: MAHARA_CERT_IMAGE },
-  { label: "IEEE Al-Azhar Student Branch" },
-  { label: "IEEE technical sessions" },
-  { label: "UN Habitat — World Urban Forum" },
-  { label: "Conferences" },
-  { label: "Workshops & camps" },
-  { label: "Hackathons" },
+  { label: "IEEE Al-Azhar Student Branch", image: IEEE_BRANCH_IMAGE },
+  { label: "IEEE technical sessions", image: IEEE_TECHNICAL_IMAGE },
+  { label: "UN Habitat — World Urban Forum", image: UN_HABITAT_IMAGE },
+  { label: "Conferences", image: CONFERENCE_IMAGE },
+  { label: "Workshops & camps", image: WORKSHOP_IMAGE },
+  { label: "Hackathons", image: HACKATHON_IMAGE },
 ];

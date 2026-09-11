@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">Emotion detection project placeholder</title>
+  <desc id="desc">Placeholder artwork for the Emotion Detection project.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#1f2937"/>
+      <stop offset="50%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#7c2d12"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <circle cx="930" cy="170" r="200" fill="#fb7185" opacity="0.18"/>
+  <circle cx="280" cy="660" r="240" fill="#fbbf24" opacity="0.16"/>
+  <rect x="95" y="140" width="1010" height="520" rx="32" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.18)"/>
+  <text x="120" y="290" fill="#f8fafc" font-size="58" font-family="Segoe UI, Arial, sans-serif" font-weight="700">Emotion Detection</text>
+  <text x="120" y="370" fill="#e2e8f0" font-size="30" font-family="Segoe UI, Arial, sans-serif">Deep learning & computer vision</text>
+  <text x="120" y="560" fill="#fda4af" font-size="24" font-family="Segoe UI, Arial, sans-serif" letter-spacing="4">VISION AI</text>
+</svg>
